@@ -7,8 +7,10 @@ using System.Diagnostics;
 using System.Windows.Forms;
 
 
-namespace WslPortfowardLauncher
+namespace WslGuiController.Controllers
 {
+    using Models;
+
     public static class WslController
     {
         private static int ExecWslCommand(string command, out string stdOut, out string stdErr, Encoding encoding = null)

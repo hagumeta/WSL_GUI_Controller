@@ -1,7 +1,7 @@
 ﻿
-namespace WslPortfowardLauncher
+namespace WslGuiController.Views
 {
-    partial class Form1
+    partial class PortfowardForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -52,8 +52,8 @@ namespace WslPortfowardLauncher
             this.dataGridView1.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
@@ -211,6 +211,7 @@ namespace WslPortfowardLauncher
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "WSL Portfowarding Tool";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

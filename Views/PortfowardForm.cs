@@ -11,9 +11,11 @@ using MaterialSkin.Controls;
 using MaterialSkin.Animations;
 using MaterialSkin.Properties;
 
-namespace WslPortfowardLauncher
+namespace WslGuiController.Views
 {
-    public partial class Form1 : MaterialForm
+    using Controllers;
+    using Models;
+    public partial class PortfowardForm : MaterialForm
     {
         protected enum DataColumn : ushort
         {
@@ -24,7 +26,7 @@ namespace WslPortfowardLauncher
         }
 
         CoreController coreController;
-        public Form1()
+        public PortfowardForm()
         {
             InitializeComponent();
             this.dataGridView1.Columns[DataColumn.WinPort.ToString()].ValueType = typeof(int);
@@ -37,16 +39,14 @@ namespace WslPortfowardLauncher
 
         public void LoadPortfowardList()
         {
-            coreController.Init();
+            this.coreController.FetchData();
             this.dataGridView1.Rows.Clear();
-            int index = 0;
-            foreach (var portfoward in coreController.Portfowards)
+            foreach (var (portfoward, index) in this.coreController.Portfowards.Select((x, i) => (x, i)))
             {
                 this.dataGridView1.Rows.Add();
                 this.dataGridView1.Rows[index].Cells[DataColumn.WinPort.ToString()].Value = portfoward.WindowsPort;
                 this.dataGridView1.Rows[index].Cells[DataColumn.WslIp.ToString()].Value = portfoward.WslIp;
                 this.dataGridView1.Rows[index].Cells[DataColumn.WslPort.ToString()].Value = portfoward.WslPort;
-                index++;
             }
         }
 
@@ -70,7 +70,7 @@ namespace WslPortfowardLauncher
                     newPortfowards.Add(portfoward);
                 }
             }
-            this.coreController.ApplyPortfoward(newPortfowards);
+            this.coreController.ApplyPortfowards(newPortfowards);
             this.LoadPortfowardList();
         }
 
@@ -118,6 +118,11 @@ namespace WslPortfowardLauncher
                     dgv.CancelEdit();
                 }
             }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

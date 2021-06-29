@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace WslPortfowardLauncher
+namespace WslGuiController.Controllers
 {
+    using Models;
+
     class CoreController
     {
         public List<Portfoward> Portfowards { get; protected set; }
-        public void Init()
+        public void FetchData()
         {
             this.Portfowards = WslController.GetPortfowards();
         }
         
-        public void ApplyPortfoward(List<Portfoward> newPortfowards)
+        public void ApplyPortfowards(List<Portfoward> newPortfowards)
         {
             foreach (var portfoward in this.Portfowards)
             {
