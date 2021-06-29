@@ -28,7 +28,7 @@ namespace WslGuiController.Controllers
             {
                 WslController.AddPortfoward(newPortfoward);
             }
-            MessageBox.Show("更新完了しました");
+            MessageBox.Show("適用完了しました");
         }
     }
 }
