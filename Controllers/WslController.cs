@@ -65,7 +65,7 @@ namespace WslGuiController.Controllers
         public static string GetWslIp()
         {
             string stdOut, stdErr;
-            var cmd = "ip a show dev eth0 ^| grep ^'inet ^' ^| awk ^'{print $2}^' ^| awk -F ^'/^' ^'{print $1}^'";
+            var cmd = "ip a show dev eth0 ^| grep 'inet ' ^| awk '{print $2}' ^| awk -F '/' '{print $1}'";
             ExecWslCommand(cmd, out stdOut, out stdErr);
             return stdOut.Trim();
         }
@@ -92,6 +92,7 @@ namespace WslGuiController.Controllers
             {
                 string[] delimiter = { " " };
                 var list = portproxy.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+                if (list.Length < 4) continue;
                 Portfoward portfoward = new Portfoward(Int32.Parse(list[1]), list[2], Int32.Parse(list[3]));
                 portfowards.Add(portfoward);
             }
